@@ -577,7 +577,87 @@ finalizar();
 }
 
 }
+function mostrarPregunta(){
 
+const q = preguntas[actual];
+
+pregunta.innerHTML = q.pregunta;
+
+progreso.innerHTML = `Pregunta ${actual+1} de ${preguntas.length}`;
+
+barra.style.width = ((actual)/preguntas.length)*100 + "%";
+
+opciones.innerHTML = "";
+
+q.opciones.forEach((texto,indice)=>{
+
+const boton = document.createElement("div");
+
+boton.className="opcion";
+
+boton.innerHTML=texto;
+
+boton.onclick=()=>responder(indice);
+
+opciones.appendChild(boton);
+
+});
+
+}
+
+function responder(indice){
+
+if(indice===preguntas[actual].correcta){
+
+puntaje++;
+
+}
+
+actual++;
+
+if(actual<preguntas.length){
+
+mostrarPregunta();
+
+}else{
+
+finalizar();
+
+}
+
+}
+
+function finalizar(){
+
+quiz.style.display="none";
+
+resultado.style.display="block";
+
+barra.style.width="100%";
+
+document.getElementById("puntaje").innerHTML=
+puntaje+" / "+preguntas.length;
+
+let porcentaje=Math.round((puntaje/preguntas.length)*100);
+
+if(porcentaje>=90){
+
+document.getElementById("mensaje").innerHTML=
+"🏆 ¡Excelente! Estás preparado para el examen.";
+
+}else if(porcentaje>=70){
+
+document.getElementById("mensaje").innerHTML=
+"👍 Buen resultado. Repasá algunos temas.";
+
+}else{
+
+document.getElementById("mensaje").innerHTML=
+"📚 Necesitás seguir practicando.";
+
+}
+
+}
 </script>
 
 </body>
