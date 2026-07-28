@@ -1,1 +1,585 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Simulacro Examen Teórico | Academia Gio</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:#edf3fb;
+
+}
+
+header{
+
+background:linear-gradient(135deg,#0d47a1,#1976d2);
+
+color:white;
+
+padding:45px;
+
+text-align:center;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+header h1{
+
+font-size:38px;
+
+margin-bottom:10px;
+
+}
+
+header p{
+
+font-size:18px;
+
+opacity:.95;
+
+}
+
+main{
+
+max-width:900px;
+
+margin:40px auto;
+
+padding:25px;
+
+}
+
+.card{
+
+background:white;
+
+border-radius:20px;
+
+padding:35px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+#inicio{
+
+text-align:center;
+
+}
+
+#inicio h2{
+
+font-size:32px;
+
+margin-bottom:15px;
+
+color:#0d47a1;
+
+}
+
+#inicio p{
+
+font-size:18px;
+
+line-height:1.8;
+
+margin-bottom:35px;
+
+color:#555;
+
+}
+
+.info{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:20px;
+
+margin:35px 0;
+
+}
+
+.info div{
+
+background:#f4f7fc;
+
+padding:20px;
+
+border-radius:15px;
+
+}
+
+.info h3{
+
+color:#0d47a1;
+
+margin-bottom:10px;
+
+}
+
+button{
+
+background:#1565c0;
+
+color:white;
+
+padding:18px 40px;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+font-size:18px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#0d47a1;
+
+transform:translateY(-2px);
+
+}
+
+#quiz{
+
+display:none;
+
+}
+
+.topo{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:30px;
+
+}
+
+#progreso{
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#0d47a1;
+
+}
+
+#timer{
+
+font-size:22px;
+
+font-weight:bold;
+
+color:#d32f2f;
+
+}
+
+.barra{
+
+height:12px;
+
+background:#ddd;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin-bottom:35px;
+
+}
+
+#barraInterna{
+
+height:100%;
+
+width:0%;
+
+background:#1565c0;
+
+transition:.4s;
+
+}
+
+#pregunta{
+
+font-size:26px;
+
+margin-bottom:30px;
+
+color:#222;
+
+}
+
+.opcion{
+
+background:#f5f7fa;
+
+padding:18px;
+
+margin-bottom:15px;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.25s;
+
+border:2px solid transparent;
+
+}
+
+.opcion:hover{
+
+background:#e3f2fd;
+
+border-color:#1976d2;
+
+}
+
+#resultado{
+
+display:none;
+
+text-align:center;
+
+}
+
+#resultado h2{
+
+font-size:40px;
+
+color:#0d47a1;
+
+margin-bottom:20px;
+
+}
+
+#puntaje{
+
+font-size:65px;
+
+font-weight:bold;
+
+margin:25px 0;
+
+}
+
+#mensaje{
+
+font-size:22px;
+
+margin-bottom:35px;
+
+}
+
+@media(max-width:768px){
+
+.info{
+
+grid-template-columns:1fr;
+
+}
+
+header h1{
+
+font-size:30px;
+
+}
+
+#pregunta{
+
+font-size:22px;
+
+}
+
+.topo{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🚗 Simulacro del Examen Teórico</h1>
+
+<p>Academia Gio · Montevideo</p>
+
+</header>
+
+<main>
+
+<div class="card">
+
+<section id="inicio">
+
+<h2>¿Estás listo para el examen?</h2>
+
+<p>
+
+Este simulador recrea el examen teórico con preguntas similares a las que pueden aparecer el día de la prueba.
+
+</p>
+
+<div class="info">
+
+<div>
+
+<h3>📚 Preguntas</h3>
+
+<p>30</p>
+
+</div>
+
+<div>
+
+<h3>⏱ Tiempo</h3>
+
+<p>20 minutos</p>
+
+</div>
+
+<div>
+
+<h3>✅ Aprobación</h3>
+
+<p>27 respuestas</p>
+
+</div>
+
+</div>
+
+<button id="comenzar">
+
+Comenzar simulacro
+
+</button>
+
+</section>
+
+<section id="quiz">
+
+<div class="topo">
+
+<div id="progreso">
+
+Pregunta 1 de 30
+
+</div>
+
+<div id="timer">
+
+20:00
+
+</div>
+
+</div>
+
+<div class="barra">
+
+<div id="barraInterna"></div>
+
+</div>
+
+<h2 id="pregunta"></h2>
+
+<div id="opciones"></div>
+
+</section>
+
+<section id="resultado">
+
+<h2>Resultado Final</h2>
+
+<div id="puntaje"></div>
+
+<div id="mensaje"></div>
+
+<button onclick="location.reload()">
+
+Realizar nuevamente
+
+</button>
+
+</section>
+
+</div>
+
+</main>
+
+<script>
+
+// =======================
+// BASE DEL SIMULADOR
+// =======================
+
+const preguntas = [
+{
+pregunta:"¿Qué significa una luz roja del semáforo?",
+opciones:[
+"Puede avanzar",
+"Debe detenerse completamente",
+"Debe acelerar"
+],
+correcta:1
+},
+{
+pregunta:"¿Es obligatorio usar cinturón de seguridad?",
+opciones:[
+"Sí",
+"No",
+"Solo en ruta"
+],
+correcta:0
+},
+{
+pregunta:"¿Quién tiene prioridad en un paso peatonal?",
+opciones:[
+"El peatón",
+"El vehículo",
+"La moto"
+],
+correcta:0
+},
+{
+pregunta:"¿Qué debe hacer al escuchar una ambulancia con sirena?",
+opciones:[
+"Acelerar",
+"Facilitar el paso",
+"Seguir igual"
+],
+correcta:1
+},
+{
+pregunta:"¿Qué indica una señal de STOP?",
+opciones:[
+"Reducir velocidad",
+"Detener completamente el vehículo",
+"Girar"
+],
+correcta:1
+}
+];
+
+// completar hasta 30 preguntas
+
+while(preguntas.length<30){
+
+preguntas.push({
+
+pregunta:"Pregunta de práctica Nº "+(preguntas.length+1),
+
+opciones:[
+"Opción A",
+"Opción B",
+"Opción C"
+],
+
+correcta:1
+
+});
+
+}
+
+let actual=0;
+let puntaje=0;
+let tiempo=20*60;
+
+const inicio=document.getElementById("inicio");
+const quiz=document.getElementById("quiz");
+const resultado=document.getElementById("resultado");
+
+const pregunta=document.getElementById("pregunta");
+const opciones=document.getElementById("opciones");
+const progreso=document.getElementById("progreso");
+const barra=document.getElementById("barraInterna");
+const timer=document.getElementById("timer");
+
+document
+.getElementById("comenzar")
+.addEventListener("click",iniciar);
+
+function iniciar(){
+
+inicio.style.display="none";
+
+quiz.style.display="block";
+
+mostrarPregunta();
+
+actualizarTiempo();
+
+setInterval(actualizarTiempo,1000);
+
+}
+
+function actualizarTiempo(){
+
+let minutos=Math.floor(tiempo/60);
+
+let segundos=tiempo%60;
+
+timer.innerHTML=
+
+String(minutos).padStart(2,"0")
++
+":"
++
+String(segundos).padStart(2,"0");
+
+tiempo--;
+
+if(tiempo<0){
+
+finalizar();
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
