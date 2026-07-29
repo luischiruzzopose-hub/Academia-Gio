@@ -917,13 +917,13 @@ finalizar();
 }
 function mostrarPregunta(){
 
-const q = preguntas[actual];
+const q = preguntasJuego[actual];
 
 pregunta.innerHTML = q.pregunta;
 
-progreso.innerHTML = `Pregunta ${actual+1} de ${preguntas.length}`;
+progreso.innerHTML = `Pregunta ${actual+1} de ${preguntasJuego.length}`;
 
-barra.style.width = ((actual)/preguntas.length)*100 + "%";
+barra.style.width = ((actual)/preguntasJuego.length)*100 + "%";
 
 opciones.innerHTML = "";
 
@@ -945,7 +945,7 @@ opciones.appendChild(boton);
 
 function responder(indice){
 
-if(indice===preguntas[actual].correcta){
+if(indice===preguntasJuego[actual].correcta){
 
 puntaje++;
 
@@ -953,7 +953,7 @@ puntaje++;
 
 actual++;
 
-if(actual<preguntas.length){
+if(actual<preguntasJuego.length){
 
 mostrarPregunta();
 
