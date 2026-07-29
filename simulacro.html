@@ -462,6 +462,104 @@ opciones:[
 "Debe detenerse completamente",
 "Debe acelerar para pasar"
 ],
+  ,
+{
+    pregunta:"Al aproximarse a un paso peatonal sin semáforo, el conductor debe:",
+    opciones:[
+        "Mantener la velocidad si no ve peatones.",
+        "Dar preferencia a los peatones que estén cruzando o inicien el cruce.",
+        "Tocar bocina antes de pasar."
+    ],
+    correcta:1
+},
+
+{
+    pregunta:"Cuando un vehículo de emergencia circula con sirena y balizas encendidas, usted debe:",
+    opciones:[
+        "Mantener su velocidad.",
+        "Facilitar el paso deteniéndose si es necesario.",
+        "Acelerar para alejarse."
+    ],
+    correcta:1
+},
+
+{
+    pregunta:"Está prohibido estacionar:",
+    opciones:[
+        "A menos de 5 metros de una esquina.",
+        "En calles de doble sentido.",
+        "Frente a plazas públicas."
+    ],
+    correcta:0
+},
+
+{
+    pregunta:"La distancia de seguridad con el vehículo que circula delante permite:",
+    opciones:[
+        "Ahorrar combustible.",
+        "Evitar colisiones en caso de frenadas imprevistas.",
+        "Circular a mayor velocidad."
+    ],
+    correcta:1
+},
+
+{
+    pregunta:"Al incorporarse desde una vía secundaria a una vía preferencial, usted debe:",
+    opciones:[
+        "Tener prioridad por incorporarse primero.",
+        "Ceder el paso a quienes circulan por la vía preferencial.",
+        "Acelerar para ingresar antes."
+    ],
+    correcta:1
+},
+
+{
+    pregunta:"Si un neumático revienta mientras circula, lo más recomendable es:",
+    opciones:[
+        "Frenar bruscamente.",
+        "Sujetar firmemente el volante y disminuir la velocidad de forma progresiva.",
+        "Girar inmediatamente hacia la banquina."
+    ],
+    correcta:1
+},
+
+{
+    pregunta:"La función principal del cinturón de seguridad es:",
+    opciones:[
+        "Evitar que el ocupante salga despedido en una colisión.",
+        "Mejorar la comodidad durante el viaje.",
+        "Reducir el consumo de combustible."
+    ],
+    correcta:0
+},
+
+{
+    pregunta:"Con pavimento mojado, la distancia de frenado:",
+    opciones:[
+        "Disminuye.",
+        "Aumenta.",
+        "Se mantiene igual."
+    ],
+    correcta:1
+},
+
+{
+    pregunta:"Antes de cambiar de carril, el conductor debe:",
+    opciones:[
+        "Señalizar la maniobra y comprobar que puede realizarla con seguridad.",
+        "Cambiar rápidamente para evitar demoras.",
+        "Tocar bocina y cambiar de carril."
+    ],
+    correcta:0
+},
+
+{
+    pregunta:"Cuando la visibilidad se encuentra reducida por niebla intensa, es recomendable:",
+    opciones:[
+        "Circular con luces largas.",
+        "Reducir la velocidad y utilizar luces bajas.",
+        "Encender únicamente las balizas mientras circula."
+],
 correcta:1
 },
 
@@ -758,7 +856,9 @@ correcta:0
 let actual=0;
 let puntaje=0;
 let tiempo=45*60;
-
+  
+const TOTAL_PREGUNTAS = 30;
+let preguntasJuego = [];
 const inicio=document.getElementById("inicio");
 const quiz=document.getElementById("quiz");
 const resultado=document.getElementById("resultado");
@@ -779,12 +879,17 @@ inicio.style.display="none";
 
 quiz.style.display="block";
 
+preguntasJuego = [...preguntas]
+.sort(() => Math.random() - 0.5)
+.slice(0, TOTAL_PREGUNTAS);
+
+preguntas = preguntasJuego;
+
 mostrarPregunta();
 
 actualizarTiempo();
 
 setInterval(actualizarTiempo,1000);
-
 }
 
 function actualizarTiempo(){
